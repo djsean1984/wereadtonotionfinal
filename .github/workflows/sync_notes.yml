@@ -21,7 +21,7 @@ jobs:
           pip install requests python-dotenv notion-client
       - name: Run WeRead sync script
         run: |  # 使用 | 符号表示多行字符串
-          python sync_weread_to_notion.py \
-            --weread_cookie "${{ secrets.WEREAD_COOKIE }}" \
-            --notion_token "${{ secrets.NOTION_TOKEN }}" \
-            --notion_database_id "${{ secrets.NOTION_DATABASE_ID }}"
+          **python sync_weread_to_notion.py \**  # 至少缩进两个空格
+            **--weread_cookie "${{ secrets.WEREAD_COOKIE }}" \** # 至少缩进两个空格
+            **--notion_token "${{ secrets.NOTION_TOKEN }}" \**  # 至少缩进两个空格
+            **--notion_database_id "${{ secrets.NOTION_DATABASE_ID }}"** # 至少缩进两个空格
