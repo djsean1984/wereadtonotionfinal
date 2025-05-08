@@ -1,31 +1,26 @@
 name: WeRead Sync to Notion
 
 on:
-  workflow_dispatch:  # 添加手动触发器
+  workflow_dispatch:
   schedule:
-    - cron: '0 19 * * *'  # UTC 时间每天 19:00, 对应北京时间每天凌晨 3:00
+    - cron: '0 19 * * *'
 
 jobs:
   sync:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'  # 或者你使用的 Python 版本
-
+          python-version: '3.9'
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests python-dotenv notion-client
-
       - name: Run WeRead sync script
-        run: |
-          python sync_weread_to_notion.py \
+        run: python sync_weread_to_notion.py \
             --weread_cookie "${{ secrets.WEREAD_COOKIE }}" \
             --notion_token "${{ secrets.NOTION_TOKEN }}" \
             --notion_database_id "${{ secrets.NOTION_DATABASE_ID }}"
